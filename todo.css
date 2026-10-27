@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080808;
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 25px 15px;
+}
+
+.todo {
+    max-width: 650px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 30px;
+    background: #151515;
+    border: 1px solid #333333;
+    border-radius: 18px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+}
+
+.todo h1 {
+    text-align: center;
+    color: #e9c46a;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.todo h2 {
+    color: #e9c46a;
+    font-size: 21px;
+    margin: 25px 0 15px;
+}
+
+.task-add {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+#task-name {
+    flex: 1;
+    min-width: 0;
+    padding: 13px;
+    background: #222222;
+    color: white;
+    border: 1px solid #444444;
+    border-radius: 9px;
+    outline: none;
+    font-size: 15px;
+}
+
+#task-name:focus,
+#edit-input:focus {
+    border-color: #e9c46a;
+}
+
+#task-name::placeholder,
+#edit-input::placeholder {
+    color: #999999;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 15px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.task-add button,
+.save-btn {
+    background: #e9c46a;
+    color: #111111;
+}
+
+.task-add button:hover,
+.save-btn:hover {
+    background: #f4d58d;
+}
+
+.task-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 15px 5px;
+    background: #202020;
+    border: 1px solid #383838;
+    border-radius: 12px;
+}
+
+.stat-card span {
+    display: block;
+    font-size: 12px;
+    color: #aaaaaa;
+    margin-bottom: 8px;
+}
+
+.stat-card strong {
+    color: #e9c46a;
+    font-size: 24px;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px;
+    background: #202020;
+    border: 1px solid #383838;
+    border-radius: 12px;
+    transition: 0.2s ease;
+}
+
+.task:hover {
+    background: #272727;
+    border-color: #b99b4b;
+}
+
+.task input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    accent-color: #22c55e;
+    cursor: pointer;
+}
+
+.task p {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.task p.completed {
+    text-decoration: line-through;
+    color: #888888;
+}
+
+.edit-btn {
+    background: #2563eb;
+    color: white;
+    flex-shrink: 0;
+}
+
+.edit-btn:hover {
+    background: #1d4ed8;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+    flex-shrink: 0;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+.empty-message {
+    padding: 25px 10px;
+    text-align: center;
+    color: #999999;
+    background: #1b1b1b;
+    border: 1px dashed #444444;
+    border-radius: 12px;
+}
+
+/* Notification */
+
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: calc(100vw - 32px);
+    padding: 14px 20px;
+    background: #202020;
+    color: white;
+    border: 1px solid #22c55e;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.error {
+    border-color: #ef4444;
+}
+
+/* Edit Popup */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    background: #181818;
+    border: 1px solid #b99b4b;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.modal-box h3 {
+    color: #e9c46a;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.modal-box p {
+    color: #aaaaaa;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+#edit-input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 18px;
+    background: #252525;
+    color: white;
+    border: 1px solid #444444;
+    border-radius: 9px;
+    outline: none;
+    font-size: 15px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancel-btn {
+    background: #383838;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background: #4a4a4a;
+}
+

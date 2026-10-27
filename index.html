@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Todo App</title>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+<div class="todo">
+
+    <h1>Todo App</h1>
+
+    <div class="task-add">
+        <input type="text" id="task-name" placeholder="Enter your task...">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <div class="task-stats">
+        <div class="stat-card">
+            <span>Total Tasks</span>
+            <strong id="total-count">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Completed</span>
+            <strong id="completed-count">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>Pending</span>
+            <strong id="pending-count">0</strong>
+        </div>
+    </div>
+
+    <h2>My Tasks</h2>
+
+    <div class="tasks"></div>
+
+</div>
+
+<!-- Notification -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Edit Popup -->
+<div class="modal-overlay" id="edit-modal" hidden>
+    <div class="modal-box" role="dialog" aria-modal="true">
+        <h3>Edit Task</h3>
+        <p>Update your task name.</p>
+
+        <input type="text" id="edit-input" placeholder="Enter updated task">
+
+        <div class="modal-actions">
+            <button class="cancel-btn" id="cancel-edit">Cancel</button>
+            <button class="save-btn" id="save-edit">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<script src="todo.js"></script>
+</body>
+</html>
